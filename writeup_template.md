@@ -36,14 +36,9 @@ You're reading it!
 4. Used and experimented with different color spaces and displayed the hog results of first 10 images.
 5. YUV color space provided better results after experimentation with other color spaces
 [image1]: ./examples/car_notcar.png
-![alt text][image1]
-
-I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
-
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 
-![alt text][image2]
+
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
@@ -70,7 +65,6 @@ I decided to search random window positions at random scales all over the image 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  experimented with differet scaling values as well as tried different window lengths to get a stable windowed output boxes.
 
 [image4]: ./examples/pipeline.png
-![alt text][image4]
 ---
 
 ### Video Implementation
@@ -88,7 +82,6 @@ Here's an example result showing the heatmap from a series of frames of video, t
 [image5]: ./examples/heatmap.png
 
 
-![alt text][image5]
 
 
 [image5]: ./examples/scipy.png
