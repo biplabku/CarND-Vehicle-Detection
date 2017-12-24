@@ -15,14 +15,6 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./sliding_Window.png
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -43,7 +35,7 @@ You're reading it!
 3. Have included the distinctive images of car and notcar images
 4. Used and experimented with different color spaces and displayed the hog results of first 10 images.
 5. YUV color space provided better results after experimentation with other color spaces
-[image1]: ./car_notcar.png
+[image1]: .examples/car_notcar.png
 ![alt text][image1]
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
@@ -61,7 +53,7 @@ I tried various combinations of parameters and experimented with different color
 
 1. In the very next step i have trained a linear svm.
 2. I have used YUV color space features not including all the color channels and hog features.
-[image2]: ./hog_features.png
+[image2]: .examples/hog_features.png
 
 ### Sliding Window Search
 
@@ -71,37 +63,38 @@ I decided to search random window positions at random scales all over the image 
 1. I have used different lower window position over the image since that's the region of interest.
 2. Have used cell_step = 2 to overcome overlap by a factor of 2 by skipping its
 
-[image3]: ./sliding_Window.png
+[image3]: .examples/sliding_Window.png
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  experimented with differet scaling values as well as tried different window lengths to get a stable windowed output boxes.
 
-[image4]: ./pipeline.png
+[image4]: .examples/pipeline.png
 ![alt text][image4]
 ---
 
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
 
+https://youtu.be/2a3X3Yhup1g
+https://youtu.be/WF0AXQmsyQU
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
-[image5]: ./heatmap.png
+[image5]: .examples/heatmap.png
 
 
 ![alt text][image5]
 
 
-[image5]: ./scipy.png
+[image5]: .examples/scipy.png
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
 
-[image6]: ./bounding_box.png
+[image6]: .examples/bounding_box.png
 
 ---
 
@@ -113,5 +106,3 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 1. the vehicle detection is not smooth enough and there is some disturbances during multiple vehicles
 2. However this can be improved by experimenting with the parameters
 3. Nearby vehicles detection sometimes takes time, Other than the pipeline successfully detects the vehicles.
-https://youtu.be/2a3X3Yhup1g
-https://youtu.be/WF0AXQmsyQU
